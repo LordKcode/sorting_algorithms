@@ -1,30 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@LordKcode 
-shady-cj
-/
-sorting_algorithms
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-sorting_algorithms/101-cocktail_sort_list.c
-@shady-cj
-shady-cj feat+docs: Implementing cocktail shaker sorting algorithm
-Latest commit fcc9bc2 yesterday
- History
- 1 contributor
-66 lines (63 sloc)  1.25 KB
-
 #include "sort.h"
 
 /**
@@ -91,18 +64,3 @@ void cocktail_sort_list(listint_t **list)
 		ptr = ptr->next;
 	}
 }
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-sorting_algorithms/101-cocktail_sort_list.c at main · shady-cj/sorting_algorithms
