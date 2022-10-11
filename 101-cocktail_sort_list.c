@@ -1,45 +1,108 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@LordKcode 
+shady-cj
+/
+sorting_algorithms
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+sorting_algorithms/101-cocktail_sort_list.c
+@shady-cj
+shady-cj feat+docs: Implementing cocktail shaker sorting algorithm
+Latest commit fcc9bc2 yesterday
+ History
+ 1 contributor
+66 lines (63 sloc)  1.25 KB
+
 #include "sort.h"
-#include "aux_functions.c"
 
 /**
- * cocktail_sort_list - sorts a list of integers in ascending order
- * using the Cocktail shaker sort algorithm
- * @list: pointer to the doubly linked list
+ * cocktail_sort_list - This implement a cocktail
+ * sort using doubly ljnked list
+ * @list: The doubly linked list
  */
+
 void cocktail_sort_list(listint_t **list)
 {
-	int swapped = 1;
-	listint_t *aux;
+	listint_t *ptr, *shaker, *pholder;
+	int sorted = 0;
 
-	if (!list)
+	if (*list == NULL)
 		return;
-
-	aux = *list;
-	while (swapped)
+	ptr = *list;
+	shaker = *list;
+	while (ptr->next)
 	{
-		for (swapped = 0; aux->next;)
+		sorted = 0;
+		while (shaker->next)
 		{
-			if (aux->next->n < aux->n)
+			pholder = shaker->next;
+			if (shaker->n > pholder->n)
 			{
-				swap_node(list, aux);
+				if (shaker->prev)
+					(shaker->prev)->next = pholder;
+				else
+					*list = pholder;
+				if (pholder->next)
+					(pholder->next)->prev = shaker;
+				pholder->prev = shaker->prev;
+				shaker->next = pholder->next;
+				shaker->prev = pholder;
+				pholder->next = shaker;
+				sorted = 1;
 				print_list(*list);
-				swapped++;
+				continue;
 			}
-			else
-				aux = aux->next;
+			shaker = shaker->next;
 		}
-		if (!swapped)
-			break;
-		for (swapped = 0; aux->prev;)
+		if (!sorted)
+			return;
+		shaker = shaker->prev;
+		while (shaker->prev)
 		{
-			if (aux->prev->n > aux->n)
+			pholder = shaker->prev;
+			if (shaker->n < pholder->n)
 			{
-				swap_node(list, aux->prev);
+				if (pholder->prev)
+					(pholder->prev)->next = shaker;
+				else
+					*list = shaker;
+				(shaker->next)->prev = pholder;
+				pholder->next = shaker->next;
+				shaker->prev = pholder->prev;
+				shaker->next = pholder;
+				pholder->prev = shaker;
 				print_list(*list);
-				swapped++;
+				continue;
 			}
-			else
-				aux = aux->prev;
+			shaker = shaker->prev;
 		}
+		ptr = ptr->next;
 	}
 }
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+sorting_algorithms/101-cocktail_sort_list.c at main · shady-cj/sorting_algorithms
